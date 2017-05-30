@@ -18,7 +18,7 @@ module.exports = new Command('help [command]')
     } else {
       this.client.cli.outputHelp();
       logger.info();
-      logger.info('  To get help with a specific command, type', chalk.bold('firebase help [command_name]'));
+      logger.info('  To get help with a specific command, type', chalk.bold('spacetraders help [command_name]'));
       logger.info();
     }
 
