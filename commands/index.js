@@ -9,7 +9,7 @@ module.exports = function(client) {
 
   client.help = loadCommand('help');
   // client.list = loadCommand('list');
-  // client.login = loadCommand('login');
+  client.login = loadCommand('login');
   // client.logout = loadCommand('logout');
 
 

@@ -8,6 +8,7 @@ var didYouMean = require('didyoumean');
 
 program.version(pkg.version);
 program.option('--token <token>', 'supply an auth token for this command');
+program.option('--debug', 'print verbose debug output and keep a debug log file');
 
 var client = {};
 client.cli = program;
