@@ -2,7 +2,7 @@
   "name": "spacetraders-cli",
   "version": "0.0.2",
   "bin": {
-    "spacetraders": "./bin/spacetraders.js"
+    "spacetraders": "./bin/spacetraders"
   },
   "files": [
     "bin/**",
