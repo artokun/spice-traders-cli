@@ -1,6 +1,6 @@
 {
   "name": "spacetraders-cli",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "bin": {
     "spacetraders": "./bin/spacetraders"
   },
