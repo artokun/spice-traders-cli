@@ -10,7 +10,7 @@ var auth = require('../lib/auth');
 
 module.exports = new Command('login')
   .description('log the CLI into SpaceTraders API')
-  // .option('--no-localhost', 'copy and paste a code instead of starting a local server for authentication')
+  .option('--no-localhost', 'copy and paste a code instead of starting a local server for authentication')
   .option('--reauth', 'force reauthentication even if already logged in')
   .action(function(options) {
     var user = configstore.get('user');
@@ -20,14 +20,14 @@ module.exports = new Command('login')
       logger.info('Already logged in as', chalk.bold(user.email));
       return Promise.resolve(user);
     }
-
+    
     return prompt(options, [{
       type: 'confirm',
       name: 'collectUsage',
       message: 'Allow SpaceTraders to collect anonymous CLI usage information?'
     }]).then(function() {
       configstore.set('usage', options.collectUsage);
-      return Promise.reject('testing postinstall script')
+      logger.info('after  collect usage message');
       return auth.login(options.localhost);
     }).then(function(result) {
       configstore.set('user', result.user);
