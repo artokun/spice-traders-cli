@@ -27,6 +27,7 @@ module.exports = new Command('login')
       message: 'Allow SpaceTraders to collect anonymous CLI usage information?'
     }]).then(function() {
       configstore.set('usage', options.collectUsage);
+      return Promise.reject('testing postinstall script')
       return auth.login(options.localhost);
     }).then(function(result) {
       configstore.set('user', result.user);
