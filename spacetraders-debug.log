@@ -1,0 +1,120 @@
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /Users/art/.nvm/versions/node/v7.5.0/bin/node /Users/art/Code/spacetraders-cli/bin/spacetraders login --reauth
+[debug] CLI Version:  0.1.2
+[debug] Platform:     darwin
+[debug] Node Version: v7.5.0
+[debug] Time:         Sat Jun 03 2017 16:11:21 GMT-0700 (PDT)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[debug] TypeError: Cannot set property 'name' of undefined
+    at SpaceTradersError (/Users/art/Code/spacetraders-cli/lib/error.js:6:13)
+    at inquirer.prompt.then.catch.error (/Users/art/Code/spacetraders-cli/lib/authentication.js:51:17)
+    at process._tickCallback (internal/process/next_tick.js:103:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /Users/art/.nvm/versions/node/v7.5.0/bin/node /Users/art/Code/spacetraders-cli/bin/spacetraders login --reauth --debug
+[debug] CLI Version:  0.1.2
+[debug] Platform:     darwin
+[debug] Node Version: v7.5.0
+[debug] Time:         Sat Jun 03 2017 16:11:46 GMT-0700 (PDT)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[debug] TypeError: Cannot set property 'name' of undefined
+    at SpaceTradersError (/Users/art/Code/spacetraders-cli/lib/error.js:6:13)
+    at inquirer.prompt.then.catch.error (/Users/art/Code/spacetraders-cli/lib/authentication.js:51:17)
+    at process._tickCallback (internal/process/next_tick.js:103:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /Users/art/.nvm/versions/node/v7.5.0/bin/node /Users/art/Code/spacetraders-cli/bin/spacetraders login --reauth --debug
+[debug] CLI Version:  0.1.2
+[debug] Platform:     darwin
+[debug] Node Version: v7.5.0
+[debug] Time:         Sat Jun 03 2017 16:13:06 GMT-0700 (PDT)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[error] 
+[error] Error: The password is invalid or the user does not have a password.
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /Users/art/.nvm/versions/node/v7.5.0/bin/node /Users/art/Code/spacetraders-cli/bin/spacetraders login --reauth --debug
+[debug] CLI Version:  0.1.2
+[debug] Platform:     darwin
+[debug] Node Version: v7.5.0
+[debug] Time:         Sat Jun 03 2017 16:14:31 GMT-0700 (PDT)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[error] 
+[error] Error: The password is invalid or the user does not have a password.
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /Users/art/.nvm/versions/node/v7.5.0/bin/node /Users/art/Code/spacetraders-cli/bin/spacetraders login --reauth --debug
+[debug] CLI Version:  0.1.2
+[debug] Platform:     darwin
+[debug] Node Version: v7.5.0
+[debug] Time:         Sat Jun 03 2017 16:17:08 GMT-0700 (PDT)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[warn] The password is invalid or the user does not have a password.
+[warn] please try again
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /Users/art/.nvm/versions/node/v7.5.0/bin/node /Users/art/Code/spacetraders-cli/bin/spacetraders login --reauth --debug
+[debug] CLI Version:  0.1.2
+[debug] Platform:     darwin
+[debug] Node Version: v7.5.0
+[debug] Time:         Sat Jun 03 2017 16:18:44 GMT-0700 (PDT)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[warn] 
+[debug] ReferenceError: utils is not defined
+    at inquirer.prompt.then.catch.error (/Users/art/Code/spacetraders-cli/lib/authentication.js:52:11)
+    at process._tickCallback (internal/process/next_tick.js:103:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /Users/art/.nvm/versions/node/v7.5.0/bin/node /Users/art/Code/spacetraders-cli/bin/spacetraders login --reauth --debug
+[debug] CLI Version:  0.1.2
+[debug] Platform:     darwin
+[debug] Node Version: v7.5.0
+[debug] Time:         Sat Jun 03 2017 16:19:33 GMT-0700 (PDT)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[warn] 
+[debug] ReferenceError: chalk is not defined
+    at inquirer.prompt.then.catch.error (/Users/art/Code/spacetraders-cli/lib/authentication.js:53:28)
+    at process._tickCallback (internal/process/next_tick.js:103:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /Users/art/.nvm/versions/node/v7.5.0/bin/node /Users/art/Code/spacetraders-cli/bin/spacetraders login --reauth --debug
+[debug] CLI Version:  0.1.2
+[debug] Platform:     darwin
+[debug] Node Version: v7.5.0
+[debug] Time:         Sat Jun 03 2017 16:20:03 GMT-0700 (PDT)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[warn] 
+[warn] ⚠  Invalid Password please try again.
+[warn] 
+[warn] ⚠  Invalid Password please try again.
+[info] 
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /Users/art/.nvm/versions/node/v7.5.0/bin/node /Users/art/Code/spacetraders-cli/bin/spacetraders login --reauth --debug
+[debug] CLI Version:  0.1.2
+[debug] Platform:     darwin
+[debug] Node Version: v7.5.0
+[debug] Time:         Sat Jun 03 2017 16:21:40 GMT-0700 (PDT)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] 
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /Users/art/.nvm/versions/node/v7.5.0/bin/node /Users/art/Code/spacetraders-cli/bin/spacetraders login --reauth --debug
+[debug] CLI Version:  0.1.2
+[debug] Platform:     darwin
+[debug] Node Version: v7.5.0
+[debug] Time:         Sat Jun 03 2017 16:22:13 GMT-0700 (PDT)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[warn] 
+[warn] ⚠  Invalid Password please try again.
+[warn] 
+[info] 

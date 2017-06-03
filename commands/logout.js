@@ -7,41 +7,27 @@ var chalk = require('chalk');
 var utils = require('../lib/utils');
 var api = require('../lib/api');
 var auth = require('../lib/auth');
+var firebase = require('firebase')
 var _ = require('lodash');
 
 module.exports = new Command('logout')
   .description('log the CLI out of Spacetraders')
   .action(function(options) {
     var user = configstore.get('user');
-    var tokens = configstore.get('tokens');
-    var currentToken = _.get(tokens, 'refresh_token');
-    var token = utils.getInheritedOption(options, 'token') || currentToken;
-    api.setToken(token);
-    var next;
-    if (token) {
-      next = auth.logout(token);
-    } else {
-      next = Promise.resolve();
-    }
+    var token = configstore.get('refreshToken');
+
+    const next = firebase.auth().signOut()
 
     var cleanup = function() {
-      if (token || user || tokens) {
-        var msg = 'Logged out';
-        if (token === currentToken) {
-          if (user) {
-            msg += ' from ' + chalk.bold(user.email);
-          }
-        } else {
-          msg += ' token "' + chalk.bold(token) + '"';
-        }
-        utils.logSuccess(msg);
+      configstore.delete('user')
+      configstore.delete('refreshToken')
+
+      if (token || user) {
+        utils.logSuccess(`Logged out from ${chalk.bold(user.email)}`);
       } else {
         logger.info('No need to logout, not logged in');
       }
     };
 
-    return next.then(cleanup, function() {
-      utils.logWarning('Invalid refresh token, did not need to deauthorize');
-      cleanup();
-    });
+    return next.then(cleanup)
   });
