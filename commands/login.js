@@ -49,6 +49,7 @@ module.exports = new Command('login')
       configstore.set('usage', answers.collectUsage)
       return Auth.login(answers.provider)
     }).then(function(user) {
+      // Auth.processing = false
       if(user) {
         logger.info()
         utils.logSuccess('Success! Logged in as ' + chalk.bold(user.email))
