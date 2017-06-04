@@ -1,33 +1,62 @@
-'use strict';
+'use strict'
 
-var Command = require('../lib/command');
-var configstore = require('../lib/configstore');
-var logger = require('../lib/logger');
-var chalk = require('chalk');
-var utils = require('../lib/utils');
-var api = require('../lib/api');
-var auth = require('../lib/auth');
+var inquirer = require('inquirer')
 var firebase = require('firebase')
-var _ = require('lodash');
+var chalk = require('chalk')
+var Command = require('../lib/command')
+var logger = require('../lib/logger')
+var configstore = require('../lib/configstore')
+var utils = require('../lib/utils')
+var SpaceTradersError = require('../lib/error')
+var Auth = require('../lib/authentication')
 
 module.exports = new Command('logout')
-  .description('log the CLI out of Spacetraders')
+  .description('Logout of SpaceTraders MMO')
   .action(function(options) {
-    var user = configstore.get('user');
-    var token = configstore.get('refreshToken');
 
-    const next = firebase.auth().signOut()
+    // verify if credentails are still stored in memory
+    const email = configstore.get('email')
+    const password = configstore.get('password')
 
-    var cleanup = function() {
-      configstore.delete('user')
-      configstore.delete('refreshToken')
-
-      if (token || user) {
-        utils.logSuccess(`Logged out from ${chalk.bold(user.email)}`);
-      } else {
-        logger.info('No need to logout, not logged in');
+    if (!email && !password) {
+      logger.info()
+      utils.logBullet("There's no need to log out. You are not logged in.")
+      logger.info()
+      return Promise.resolve()
+    }
+    return firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
+      const user = firebase.auth().currentUser
+      utils.logSuccess('Currently logged in as ' + chalk.bold(user.email))
+      Promise.resolve(user)
+    }).then(user => {
+      return inquirer.prompt([
+        {
+          type: 'confirm',
+          name: 'logout',
+          message: 'Are you sure you want to log out?'
+        }
+      ])
+    }).then(({logout}) => {
+      console.log(logout)
+      if (logout) {
+        return firebase.auth().signOut().then(() => {
+          return Promise.resolve(true)
+        })
       }
-    };
+      return Promise.resolve(false)
+    }).then(loggedOut => {
+      if (loggedOut) {
+        configstore.delete('email')
+        configstore.delete('password')
 
-    return next.then(cleanup)
-  });
+        logger.info()
+        utils.logSuccess('Successfully logged out. See you soon!')
+        logger.info()
+        return Promise.resolve()
+      }
+      logger.info()
+      utils.logSuccess('Logout cancelled')
+      logger.info()
+      return Promise.resolve()
+    })
+  })

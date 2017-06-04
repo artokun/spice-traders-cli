@@ -1,12 +1,13 @@
 'use strict'
 
+var inquirer = require('inquirer')
+var firebase = require('firebase')
+var chalk = require('chalk')
 var Command = require('../lib/command')
 var logger = require('../lib/logger')
 var configstore = require('../lib/configstore')
-var chalk = require('chalk')
 var utils = require('../lib/utils')
-var inquirer = require('inquirer')
-var firebase = require('firebase')
+var SpaceTradersError = require('../lib/error')
 var Auth = require('../lib/authentication')
 
 module.exports = new Command('login')
@@ -20,17 +21,33 @@ module.exports = new Command('login')
     const password = configstore.get('password')
 
     if (email && password && !options.reauth) {
-      return firebase.auth().signInWithEmailAndPassword(email, password).then(user => {
-        logger.info('Already logged in as', chalk.bold(user.email))
+      return firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
+        const user = firebase.auth().currentUser
+
+        if (!user.emailVerified) {
+          logger.info()
+          utils.logWarning('Please verify your email address:\n   ' + chalk.bold(user.email))
+          logger.info()
+          return
+        }
+        logger.info()
+        utils.logSuccess('Logged in as ' + chalk.bold(user.email))
+        logger.info()
         return Promise.resolve(user)
       })
     }
+    if (configstore.get('usage') === null) {
+      return inquirer.prompt([
+        {
+          type: 'confirm',
+          name: 'collectUsage',
+          message: 'Allow SpaceTraders to collect anonymous CLI usage information?'
+        }
+      ]).then(function(answers) {
+        configstore.set('usage', answers.collectUsage)
+      })
+    }
     return inquirer.prompt([
-      {
-        type: 'confirm',
-        name: 'collectUsage',
-        message: 'Allow SpaceTraders to collect anonymous CLI usage information?'
-      },
       {
         type: 'list',
         name: 'provider',
@@ -49,7 +66,6 @@ module.exports = new Command('login')
       configstore.set('usage', answers.collectUsage)
       return Auth.login(answers.provider)
     }).then(function(user) {
-      // Auth.processing = false
       if(user) {
         logger.info()
         utils.logSuccess('Success! Logged in as ' + chalk.bold(user.email))
