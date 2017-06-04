@@ -9,4 +9,5 @@ Login to the client
 
 If you don't have an account, the login process will create an account for you
 
-Game is under active development.
+###::Game is under active development::
+At the current stage of development you can only log in and out. Feel free to make an account :)
