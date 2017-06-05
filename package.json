@@ -48,6 +48,7 @@
     "fs-extra": "^3.0.1",
     "inquirer": "^3.0.6",
     "jsonwebtoken": "^7.4.1",
+    "latest-version": "^3.1.0",
     "lodash": "^4.17.4",
     "opn": "^5.0.0",
     "portfinder": "^1.0.13",
