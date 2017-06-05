@@ -12,41 +12,28 @@ var Auth = require('../lib/authentication')
 
 module.exports = new Command('login')
   .description('log the CLI into SpaceTraders API')
-  .option('--no-localhost', 'copy and paste a code instead of starting a local server for authentication')
+  // .option('--no-localhost', 'copy and paste a code instead of starting a local server for authentication')
   .option('--reauth', 'force reauthentication even if already logged in')
+  .option('--resend-verification', 'resends verification email')
   .action(function(options) {
 
     // verify if credentails are still stored in memory
-    const email = configstore.get('email')
-    const password = configstore.get('password')
-
-    if (email && password && !options.reauth) {
-      return firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
-        const user = firebase.auth().currentUser
-
-        if (!user.emailVerified) {
-          logger.info()
-          utils.logWarning('Please verify your email address:\n   ' + chalk.bold(user.email))
-          logger.info()
-          return
-        }
-        logger.info()
-        utils.logSuccess('Logged in as ' + chalk.bold(user.email))
-        logger.info()
-        return Promise.resolve(user)
-      })
+    const credentials = {
+      email: configstore.get('email'),
+      password: configstore.get('password')
     }
-    if (configstore.get('usage') === null) {
-      return inquirer.prompt([
-        {
-          type: 'confirm',
-          name: 'collectUsage',
-          message: 'Allow SpaceTraders to collect anonymous CLI usage information?'
-        }
-      ]).then(function(answers) {
-        configstore.set('usage', answers.collectUsage)
-      })
+
+    if (options.resendVerification) {
+      if (credentials.email && credentials.password) {
+        return Auth.sendEmailVerification(credentials)
+      }
+      throw new SpaceTradersError('You need to be logged in to resend verification email.')
     }
+
+    if (credentials.email && credentials.password && !options.reauth) {
+      return Auth.signInWithEmailAndPassword(credentials)
+    }
+
     return inquirer.prompt([
       {
         type: 'list',
@@ -63,13 +50,6 @@ module.exports = new Command('login')
         }
       }
     ]).then(function(answers) {
-      configstore.set('usage', answers.collectUsage)
       return Auth.login(answers.provider)
-    }).then(function(user) {
-      if(user) {
-        logger.info()
-        utils.logSuccess('Success! Logged in as ' + chalk.bold(user.email))
-        logger.info()
-      }
     })
   })

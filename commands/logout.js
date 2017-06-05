@@ -26,6 +26,7 @@ module.exports = new Command('logout')
     }
     return firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
       const user = firebase.auth().currentUser
+      logger.info()
       utils.logSuccess('Currently logged in as ' + chalk.bold(user.email))
       Promise.resolve(user)
     }).then(user => {
@@ -37,7 +38,6 @@ module.exports = new Command('logout')
         }
       ])
     }).then(({logout}) => {
-      console.log(logout)
       if (logout) {
         return firebase.auth().signOut().then(() => {
           return Promise.resolve(true)
