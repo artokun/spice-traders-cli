@@ -1,0 +1,38 @@
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /Users/art/.nvm/versions/node/v7.5.0/bin/node /Users/art/Code/spacetraders-cli/bin/spacetraders login
+[debug] CLI Version:  0.2.2
+[debug] Platform:     darwin
+[debug] Node Version: v7.5.0
+[debug] Time:         Mon Jun 05 2017 22:43:34 GMT-0700 (PDT)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] 
+[info] ✔  Success! Logged in as art.longbottom.jr@gmail.com
+[info] 
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /Users/art/.nvm/versions/node/v7.5.0/bin/node /Users/art/Code/spacetraders-cli/bin/spacetraders login
+[debug] CLI Version:  0.2.2
+[debug] Platform:     darwin
+[debug] Node Version: v7.5.0
+[debug] Time:         Mon Jun 05 2017 22:44:13 GMT-0700 (PDT)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] 
+[info] ✔  Success! Logged in as art.longbottom.jr@gmail.com
+[info] 
+[debug] TypeError: this.awaitCommand is not a function
+    at inquirer.prompt.then.then (/Users/art/Code/spacetraders-cli/lib/game.js:73:21)
+    at process._tickCallback (internal/process/next_tick.js:103:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /Users/art/.nvm/versions/node/v7.5.0/bin/node /Users/art/Code/spacetraders-cli/bin/spacetraders login
+[debug] CLI Version:  0.2.2
+[debug] Platform:     darwin
+[debug] Node Version: v7.5.0
+[debug] Time:         Mon Jun 05 2017 22:45:00 GMT-0700 (PDT)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] 
+[info] ✔  Success! Logged in as art.longbottom.jr@gmail.com
+[info] 

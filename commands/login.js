@@ -9,6 +9,7 @@ var configstore = require('../lib/configstore')
 var utils = require('../lib/utils')
 var SpaceTradersError = require('../lib/error')
 var Auth = require('../lib/authentication')
+var Game = require('../lib/game')
 
 module.exports = new Command('login')
   .description('log the CLI into SpaceTraders API')
@@ -32,6 +33,7 @@ module.exports = new Command('login')
 
     if (credentials.email && credentials.password && !options.reauth) {
       return Auth.signInWithEmailAndPassword(credentials)
+      .then(() => new Game(Auth.user))
     }
 
     return inquirer.prompt([
@@ -51,5 +53,5 @@ module.exports = new Command('login')
       }
     ]).then(function(answers) {
       return Auth.login(answers.provider)
-    })
+    }).then(() => new Game(Auth.user))
   })
