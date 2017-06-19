@@ -24,6 +24,3 @@ If you don't have an account, the login process will create an account for you
 * 0.10.0  User can view, buy, and sell inventory
 
 ...more to come...
-
-#### Buy me coffee and help support development
-[Support me on Patreon!](https://www.patreon.com/spacetraders "Patreon Support Link")
