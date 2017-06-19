@@ -1,44 +1,51 @@
-'use strict';
+'use strict'
 
-var program = require('commander');
-var pkg = require('./package.json');
-var chalk = require('chalk');
-var logger = require('./lib/logger');
-var didYouMean = require('didyoumean');
+const vorpal = require('vorpal')()
+const clear = require('clear')
+const figlet = require('figlet')
+const firebase = require('firebase')
+const Auth = require('./lib/auth')
+const Preferences = require('preferences')
+const pkg = require('./package.json')
+const chalk = vorpal.chalk
 
-program.version(pkg.version);
-program.option('--token <token>', 'supply an auth token for this command');
-program.option('--debug', 'print verbose debug output and keep a debug log file');
+let client = {}
+client.config = new Preferences(pkg.name, { credentials: {} })
+client.vorpal = vorpal
+client.firebase = firebase
+client.auth = new Auth(client.config, client.vorpal, client.firebase)
 
-var client = {};
-client.cli = program;
-client.logger = require('./lib/logger');
-client.errorOut = function(error, status) {
-  require('./lib/errorOut')(client, error, status);
-};
-
-client.getCommand = function(name) {
-  for (var i = 0; i < client.cli.commands.length; i++) {
-    if (client.cli.commands[i]._name === name) {
-      return client.cli.commands[i];
-    }
+// Bind instance events
+client.auth.onAuthStateChanged(user => {
+  if (user) {
+    return client.vorpal.emit('auth-state-changed', user)
   }
-  return null;
-};
+})
 
-require('./commands')(client);
+// Show banner
+clear()
+console.log(
+  chalk.yellow(figlet.textSync('SpaceTraders', {
+    horizontalLayout: 'right smushing',
+    font: 'Small Slant'
+  }))
+)
+console.log(chalk.bold.green('\n  Online Space Trading MMORPG'))
+console.log(chalk.cyan(`  Version ${pkg.version}\n`))
+console.log(chalk.white('  Type `help` see available commands. \n'))
 
-var commandNames = program.commands.map(function(cmd) {
-  return cmd._name;
-});
+// Fetch and instantiate all commands
+require('./commands')(client)
 
-program.action(function(cmd, cmd2) {
-  logger.error(
-    chalk.bold.red('Error:'),
-    chalk.bold(cmd), 'is not a SpaceTraders command.'
-  );
+// Initiate REPL
+vorpal
+  .delimiter('spacetraders$')
+  .show();
 
-  process.exit(1);
-});
-
-module.exports = client;
+// Catch any unknown commands
+vorpal
+  .catch('[words...]', 'Catches incorrect commands')
+  .action(function (args, cb) {
+    this.log(args.words.join(' ') + ' is not a valid SpaceTraders command.\n');
+    cb();
+  });

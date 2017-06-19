@@ -1,15 +1,8 @@
-'use strict';
+const utils = require('../lib/utils')
 
-module.exports = function(client) {
-  var loadCommand = function(name) {
-    var cmd = require('./' + name);
-    cmd.register(client);
-    return cmd.runner();
-  };
-
-  client.help = loadCommand('help');
-  client.login = loadCommand('login');
-  client.logout = loadCommand('logout');
-
-  return client;
-};
+module.exports = (client) => {
+  utils.getCommands().forEach(command => {
+    if (command === 'index') { return }
+    require(`./${command}`)(client)
+  })
+}
