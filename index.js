@@ -25,8 +25,7 @@ client.auth.onAuthStateChanged(user => {
 // Show banner
 clear()
 console.log(
-  chalk.yellow(figlet.textSync('Spice Traders', {
-    horizontalLayout: 'right smushing',
+  chalk.yellow(figlet.textSync('SpiceTraders', {
     font: 'Small Slant'
   }))
 )
