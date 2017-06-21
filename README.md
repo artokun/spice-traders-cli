@@ -1,5 +1,5 @@
 # spice-traders-cli
-## A CLI client for the Spice Traders MMORPG
+## A CLI client for the SpiceTraders MMORPG
 
 Install the CLI globally with
 `npm install -g spice-traders-cli`
@@ -13,7 +13,7 @@ If you don't have an account, the login process will create an account for you
 
 #### Roadmap
 * 0.1.0  ~~Basic Auth~~
-* 0.2.0  ~~Integrate auth with the Spice Traders Core service~~
+* 0.2.0  ~~Integrate auth with the SpiceTraders Core service~~
 * 0.3.0  ~~Send basic ship commands to the backend service~~
 * 0.4.0  User can listen to events dispatched from the server
 * 0.5.0  User profile is persisted in server

@@ -5,7 +5,7 @@ module.exports = function(client) {
 
   vorpal
     .command('logout')
-    .description('log the CLI out of Spice Traders API')
+    .description('log the CLI out of SpiceTraders API')
     .action(function(args, cb) {
       clear()
       return new Promise((resolve, reject) => {

@@ -2,7 +2,7 @@
   "name": "spice-traders-cli",
   "version": "0.3.6",
   "bin": {
-    "spacetraders": "./bin/spicetraders"
+    "spicetraders": "./bin/spicetraders"
   },
   "files": [
     "bin/**",
@@ -11,7 +11,7 @@
     "templates/**",
     "index.js"
   ],
-  "description": "Command-Line Interface for Spice Traders API",
+  "description": "Command-Line Interface for SpiceTraders API",
   "repository": {
     "type": "git",
     "url": "https://github.com/artokun/spice-traders-cli.git"
@@ -32,7 +32,7 @@
   },
   "keywords": [
     "spacetraders",
-    "spice traders",
+    "SpiceTraders",
     "space",
     "traders",
     "cli",

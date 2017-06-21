@@ -45,6 +45,6 @@ vorpal
 vorpal
   .catch('[words...]', 'Catches incorrect commands')
   .action(function (args, cb) {
-    this.log(args.words.join(' ') + ' is not a valid Spice Traders command.\n');
+    this.log(args.words.join(' ') + ' is not a valid SpiceTraders command.\n');
     cb();
   });
