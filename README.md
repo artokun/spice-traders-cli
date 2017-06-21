@@ -1,11 +1,11 @@
 # spice-traders-cli
-## A CLI client for the SpaceTraders MMO
+## A CLI client for the Spice Traders MMORPG
 
 Install the CLI globally with
-`npm install -g spacetraders-cli`
+`npm install -g spice-traders-cli`
 
 Login to the client
-`spacetraders login`
+`spicetraders login`
 
 If you don't have an account, the login process will create an account for you
 
