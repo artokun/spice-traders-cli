@@ -1,4 +1,4 @@
-# spacetraders-cli
+# spice-traders-cli
 ## A CLI client for the SpaceTraders MMO
 
 Install the CLI globally with
