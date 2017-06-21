@@ -25,7 +25,7 @@ client.auth.onAuthStateChanged(user => {
 // Show banner
 clear()
 console.log(
-  chalk.yellow(figlet.textSync('SpaceTraders', {
+  chalk.yellow(figlet.textSync('Spice Traders', {
     horizontalLayout: 'right smushing',
     font: 'Small Slant'
   }))
@@ -39,13 +39,13 @@ require('./commands')(client)
 
 // Initiate REPL
 vorpal
-  .delimiter('spacetraders$')
+  .delimiter('spicetraders')
   .show();
 
 // Catch any unknown commands
 vorpal
   .catch('[words...]', 'Catches incorrect commands')
   .action(function (args, cb) {
-    this.log(args.words.join(' ') + ' is not a valid SpaceTraders command.\n');
+    this.log(args.words.join(' ') + ' is not a valid Spice Traders command.\n');
     cb();
   });

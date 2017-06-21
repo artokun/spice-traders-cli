@@ -6,7 +6,7 @@ module.exports = function(client) {
 
   vorpal
     .command('login')
-    .description('log the CLI into SpaceTraders API')
+    .description('log the CLI into Spice Traders API')
     // .option('-r, --reauth', 'force reauthentication even if already logged in')
     // .option('-v, --resend-verification', 'resends verification email')
     // .option('-u, --update-usage-collection', 'changes usage collection preferences')
@@ -26,7 +26,7 @@ module.exports = function(client) {
           {
             type: 'confirm',
             name: 'collectUsage',
-            message: 'Allow SpaceTraders to collect anonymous CLI usage information?',
+            message: 'Allow Spice Traders to collect anonymous CLI usage information?',
             when() {
               return typeof config.usage === 'undefined' || args.options['update-usage-collection']
             }
