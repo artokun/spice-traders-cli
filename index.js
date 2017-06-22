@@ -10,17 +10,10 @@ const pkg = require('./package.json')
 const chalk = vorpal.chalk
 
 let client = {}
-client.config = new Preferences(pkg.name, { credentials: {} })
+client.config = new Preferences(pkg.name, { user: {} })
 client.vorpal = vorpal
 client.firebase = firebase
 client.auth = new Auth(client.config, client.vorpal, client.firebase)
-
-// Bind instance events
-client.auth.onAuthStateChanged(user => {
-  if (user) {
-    return client.vorpal.emit('auth-state-changed', user)
-  }
-})
 
 // Show banner
 clear()
