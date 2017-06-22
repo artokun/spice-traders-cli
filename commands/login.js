@@ -15,7 +15,7 @@ module.exports = function(client) {
       return new Promise((resolve, reject) => {
         if (auth.user) {
           if (!auth.user.emailVerified) {
-            cb(vorpal.chalk.yellow('Please verify your email by clicking the\nverification link sent to: ') + vorpal.chalk.bold(auth.user.email) + '\n')
+            cb(vorpal.chalk.yellow('Please verify your email by clicking the\nverification link sent to: ') + vorpal.chalk.bold(auth.user.email) + '\n') 
           }
           cb(vorpal.chalk.green('Currently logged in as: ') + vorpal.chalk.bold(auth.user.email) + '\n')
           return
