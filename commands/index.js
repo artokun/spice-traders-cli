@@ -1,8 +1,8 @@
 const utils = require('../lib/utils')
 
-module.exports = (client) => {
+module.exports = () => {
   utils.getCommands().forEach(command => {
     if (command === 'index') { return }
-    require(`./${command}`)(client)
+    require(`./${command}`)()
   })
 }

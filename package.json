@@ -42,23 +42,15 @@
   "author": "Arthur Longbottom & Joel Brubaker",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.17.2",
-    "chalk": "^1.1.3",
-    "clear": "0.0.1",
     "clui": "^0.3.6",
     "detect-port": "^1.2.1",
     "exit-code": "^1.0.2",
     "express": "^4.15.3",
     "figlet": "^1.2.0",
-    "figures": "^2.0.0",
     "firebase": "^4.1.3",
     "googleapis": "^19.0.0",
-    "inquirer": "^3.1.1",
-    "kill-port": "^1.0.0",
     "opn": "^5.1.0",
     "preferences": "^0.2.1",
-    "readline2": "^1.0.1",
-    "update-notifier": "^2.2.0",
     "vorpal": "^1.12.0"
   }
 }

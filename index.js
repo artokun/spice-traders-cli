@@ -1,33 +1,36 @@
 'use strict'
 
 const vorpal = require('vorpal')()
-const clear = require('clear')
+const Auth = require('./lib/auth')
+const Game = require('./lib/game')
+const Preferences = require('preferences')
+const clear = require('clui').Clear
 const figlet = require('figlet')
 const firebase = require('firebase')
-const Auth = require('./lib/auth')
-const Preferences = require('preferences')
 const pkg = require('./package.json')
+const config = new Preferences(pkg.name, { user: {} })
 const chalk = vorpal.chalk
 
-let client = {}
-client.config = new Preferences(pkg.name, { user: {} })
-client.vorpal = vorpal
-client.firebase = firebase
-client.auth = new Auth(client.config, client.vorpal, client.firebase)
+module.exports = {
+  vorpal,
+  firebase,
+  config,
+  auth: new Auth(firebase, config)
+}
 
 // Show banner
 clear()
-console.log(
+vorpal.log(
   chalk.yellow(figlet.textSync('SpiceTraders', {
     font: 'Small Slant'
   }))
 )
-console.log(chalk.bold.green('\n  Online Space Trading MMORPG'))
-console.log(chalk.cyan(`  Version ${pkg.version}\n`))
-console.log(chalk.white('  Type `help` see available commands. \n'))
+vorpal.log(chalk.bold.green('\n  Online Space Trading MMORPG'))
+vorpal.log(chalk.cyan(`  Version ${pkg.version}\n`))
+vorpal.log(chalk.white('  Type `login` see available commands. \n'))
 
 // Fetch and instantiate all commands
-require('./commands')(client)
+require('./commands')()
 
 // Initiate REPL
 vorpal

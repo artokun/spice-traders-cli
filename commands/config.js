@@ -1,8 +1,7 @@
-const clear = require('clear')
+const clear = require('clui').Clear
+const {vorpal, config, auth} = require('../')
 
-module.exports = function(client) {
-  const {vorpal, config, auth} = client
-
+module.exports = function() {
   vorpal
     .command('config [key] [value]')
     .option('--reset', 'Resets [key]')
