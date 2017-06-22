@@ -1,6 +1,6 @@
 {
   "name": "spice-traders-cli",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "bin": {
     "spicetraders": "./bin/spicetraders"
   },
