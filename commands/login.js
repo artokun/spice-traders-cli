@@ -1,5 +1,4 @@
 const clear = require('clui').Clear
-const Game = require('../lib/game')
 const {vorpal, config, auth, firebase} = require('../')
 
 module.exports = function() {
@@ -10,8 +9,9 @@ module.exports = function() {
       clear()
       return auth.googleProvider().then(() => {
         auth.spinner.stop()
-        this.log(vorpal.chalk.green('Successfully logged in as: ') + vorpal.chalk.bold(config.user.email) + '\n')
-        new Game(config, this, firebase, cb)
+        cb(
+          `Successfully logged in as: ${vorpal.chalk.green.bold(config.user.email)}\nType ${vorpal.chalk.bold('help')} to see available commands\n`
+        )
       }).catch(error => {
         throw new Error(error)
       })

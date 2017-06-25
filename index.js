@@ -27,7 +27,7 @@ vorpal.log(
 )
 vorpal.log(chalk.bold.green('\n  Online Space Trading MMORPG'))
 vorpal.log(chalk.cyan(`  Version ${pkg.version}\n`))
-vorpal.log(chalk.white('  Type `help` see available commands. \n'))
+vorpal.log(`  Type ${vorpal.chalk.bold('help')} to see available commands\n`)
 
 // Fetch and instantiate all commands
 require('./commands')()
