@@ -9,8 +9,11 @@ module.exports = function() {
     .action(function(args, cb) {
       clear()
       return auth.googleProvider().then(() => {
+        auth.spinner.stop()
         this.log(vorpal.chalk.green('Successfully logged in as: ') + vorpal.chalk.bold(config.user.email) + '\n')
         new Game(config, this, firebase, cb)
-      }).catch(error => {throw new Error(error)})
+      }).catch(error => {
+        throw new Error(error)
+      })
     })
 }
