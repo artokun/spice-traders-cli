@@ -15,7 +15,8 @@ module.exports = {
   vorpal,
   firebase,
   config,
-  auth: new Auth(firebase, config)
+  auth: new Auth(firebase, config),
+  game: new Game(config, vorpal, firebase)
 }
 
 // Show banner

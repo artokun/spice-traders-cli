@@ -1,5 +1,7 @@
 const clear = require('clui').Clear
-const {vorpal, config, auth, firebase} = require('../')
+const Game = require('../lib/game')
+const client = require('../')
+const {config, vorpal, firebase, auth} = client
 
 module.exports = function() {
   vorpal
