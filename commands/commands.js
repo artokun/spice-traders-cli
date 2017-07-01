@@ -60,7 +60,7 @@ module.exports = function() {
           return cb()
         }
         game.sendCommand({
-          type: 'company/new',
+          type: 'company.create',
           payload: {
             name,
             slogan,
