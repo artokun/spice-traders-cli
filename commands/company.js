@@ -5,12 +5,20 @@ const {game, vorpal, firebase} = client
 
 module.exports = function() {
   vorpal
-    .command('company')
+    .command('company [command]')
     .description('list available commands')
     .action(function(args, cb) {
-      game.init(firebase.auth().currentUser)
-      if (!game.user) {
-        return cb('You are not logged in. Please enter `login` below\n')
+      if (args.command) {
+        switch (args.command) {
+          case 'view':
+            game.sendCommand({
+              type: 'company.view'
+            })
+            cb()
+            return
+          default:
+            this.log(`${args.command} is not a valid company command.`)
+        }
       }
       this.prompt([
         {
@@ -18,7 +26,8 @@ module.exports = function() {
           name: 'company',
           message: 'Choose a company option',
           choices: [
-            { name: 'Create new company', value: 'new' },
+            { name: 'Create create company', value: 'create' },
+            { name: 'View company details', value: 'view' },
             { name: 'Back', value: 'back' }
           ]
         },
@@ -26,7 +35,7 @@ module.exports = function() {
           type: 'input',
           name: 'name',
           when(answers) {
-            return answers.company === 'new'
+            return answers.company === 'create'
           },
           message: 'Company Name: ',
           validate(input) { return input.length > 5 || 'Name is too short!'}
@@ -35,7 +44,7 @@ module.exports = function() {
           type: 'input',
           name: 'slogan',
           when(answers) {
-            return answers.company === 'new'
+            return answers.company === 'create'
           },
           message: 'Company Slogan: ',
           validate(input) { return input.length > 5 || 'Slogan is too short!'}
@@ -44,7 +53,7 @@ module.exports = function() {
           type: 'list',
           name: 'faction',
           when(answers) {
-            return answers.company === 'new'
+            return answers.company === 'create'
           },
           message: 'Choose a faction',
           default: 'UN',
@@ -59,14 +68,23 @@ module.exports = function() {
           clear()
           return cb()
         }
-        game.sendCommand({
-          type: 'company.create',
-          payload: {
-            name,
-            slogan,
-            faction
-          }
-        })
+        switch (company) {
+          case 'create':
+            game.sendCommand({
+              type: 'company.create',
+              payload: {
+                name,
+                slogan,
+                faction
+              }
+            })
+            break
+          case 'view':
+            game.sendCommand({
+              type: 'company.view'
+            })
+            break
+        }
         cb()
       })
     })
