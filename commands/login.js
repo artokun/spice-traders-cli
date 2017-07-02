@@ -6,14 +6,16 @@ const {config, vorpal, firebase, auth} = client
 module.exports = function() {
   vorpal
     .command('login')
+    .option('-c, --no-clear', 'Don\'t clear the screen')
     .description('log the CLI into SpiceTraders API')
     .action(function(args, cb) {
-      clear()
+      if (!args.options.clear) {
+        clear()
+      }
       return auth.googleProvider().then(() => {
         auth.spinner.stop()
-        cb(
-          `Successfully logged in as: ${vorpal.chalk.green.bold(config.user.email)}\nType ${vorpal.chalk.bold('help')} to see available commands\n`
-        )
+        this.log(`  ${vorpal.chalk.cyan.bold(config.user.displayName)}\n`)
+        cb()
       }).catch(error => {
         throw new Error(error)
       })
