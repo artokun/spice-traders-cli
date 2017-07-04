@@ -4,6 +4,7 @@ const vorpal = require('vorpal')()
 const Auth = require('./lib/auth')
 const Game = require('./lib/game')
 const Preferences = require('preferences')
+const PubSub = require('pubsub-js')
 const clear = require('clui').Clear
 const figlet = require('figlet')
 const firebase = require('firebase')
@@ -15,8 +16,9 @@ module.exports = {
   vorpal,
   firebase,
   config,
+  PubSub,
   auth: new Auth(firebase, config),
-  game: new Game(config, vorpal, firebase)
+  game: new Game(config, vorpal, firebase, PubSub)
 }
 
 // Show banner
