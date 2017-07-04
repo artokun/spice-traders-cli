@@ -1,4 +1,5 @@
-const clear = require('clui').Clear
+const CLI = require('clui')
+const clear = CLI.Clear
 const Game = require('../lib/game')
 const client = require('../')
 const {game, vorpal, firebase} = client
@@ -65,15 +66,44 @@ module.exports = function() {
                   slogan,
                   faction
                 }
+              }).then(data => {
+                this.log(vorpal.chalk.green(data))
+                cb()
               })
               break
             case 'view':
               game.sendCommand({
                 type: 'company.view'
+              }).then(data => {
+                new CLI.Line()
+                  .padding(2)
+                  .column('Company Details:', 16, [vorpal.chalk.bold])
+                  .fill()
+                  .output()
+                new CLI.Line().fill().output()
+                new CLI.Line()
+                  .padding(2)
+                  .column('Faction:', 10, [vorpal.chalk.cyan])
+                  .column(data.faction, 20, [vorpal.chalk.green.bold])
+                  .fill()
+                  .output()
+                new CLI.Line()
+                  .padding(2)
+                  .column('DBA:', 10, [vorpal.chalk.cyan])
+                  .column(data.name, 20, [vorpal.chalk.green.bold])
+                  .fill()
+                  .output()
+                new CLI.Line()
+                  .padding(2)
+                  .column('Slogan:', 10, [vorpal.chalk.cyan])
+                  .column(data.slogan, 20, [vorpal.chalk.green.bold])
+                  .fill()
+                  .output()
+                new CLI.Line().fill().output()
+                cb()
               })
               break
           }
-          cb()
         })
       }).catch(error => {
         vorpal.log(vorpal.chalk.red(error))
